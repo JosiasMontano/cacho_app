@@ -73,3 +73,53 @@ d2.onclick = () =>  reverse(document.getElementById("dado2"), document.getElemen
 d3.onclick = () =>  reverse(document.getElementById("dado3"), document.getElementById("dado3"));
 d4.onclick = () =>  reverse(document.getElementById("dado4"), document.getElementById("dado4"));
 d5.onclick = () =>  reverse(document.getElementById("dado5"), document.getElementById("dado5"));
+
+
+function reverse(elementoOrigen ,elementoDOM){
+  const contenido = elementoOrigen.textContent; 
+  const numero = Number(contenido.trim());
+  const valor= 7 - numero;
+  elementoDOM.innerText=valor;
+  
+  mano[0]=Number(dado1.innerText);;
+  mano[1]=Number(dado2.innerText);;
+  mano[2]=Number(dado3.innerText);;
+  mano[3]=Number(dado4.innerText);;
+  mano[4]=Number(dado5.innerText);;
+  prueba.innerText = mano;
+  
+  d1.disabled = true;
+  d2.disabled = true;
+  d3.disabled = true;
+  d4.disabled = true;
+  d5.disabled = true;
+  
+}
+
+
+
+grande1.onclick = () => grandes1(mano,grande1);
+grande2.onclick = () => grandes1(mano,grande2);
+
+
+
+function sum(mano, numero){
+   const elementosIguales = mano.filter(elemento => elemento === numero);
+  const suma = elementosIguales.reduce((total, actual) => total + actual, 0);
+  if(numero==1 && document.getElementById('aea1').innerHTML === 'xd1'){
+    aea1.innerText=suma;
+} if(numero==2 && document.getElementById('aea2').innerHTML === 'xd2'){
+    aea2.innerText=suma;
+}if(numero==3 && document.getElementById('aea3').innerHTML === 'xd3'){
+    aea3.innerText=suma;
+}if(numero==4 && document.getElementById('aea4').innerHTML === 'xd4'){
+    aea4.innerText=suma;
+}if(numero==5 && document.getElementById('aea5').innerHTML === 'xd5'){
+    aea5.innerText=suma;
+}if(numero==6 && document.getElementById('aea6').innerHTML === 'xd6'){
+    aea6.innerText=suma;
+}
+   
+  return suma;
+}
+  
