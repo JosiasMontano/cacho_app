@@ -123,3 +123,77 @@ function sum(mano, numero){
   return suma;
 }
   
+
+  reset.onclick = () => res();
+
+  function res(){
+    aea1.innerText = 'xd1';
+    aea2.innerText = 'xd2';
+    aea3.innerText = 'xd3';
+    aea4.innerText = 'xd4';
+    aea5.innerText = 'xd5';
+    aea6.innerText = 'xd6';
+  }
+
+ 
+function escalera(mano, elementoDOM) {
+    // Validaciones iniciales
+    if (!Array.isArray(mano) || mano.length !== 5) {
+        console.error("Error: La matriz debe tener 5 elementos");
+        return false;
+    }
+
+    // Verificar números del 1 al 6
+    const numerosValidos = mano.every(num => 
+        Number.isInteger(num) && num >= 1 && num <= 6
+    );
+    if (!numerosValidos) {
+        console.error("Error: Todos los elementos deben ser números enteros entre 1 y 6");
+        return false;
+    }
+
+    // Eliminar duplicados (una escalera no puede tener números repetidos)
+    const numerosUnicos = [...new Set(mano)];
+    if (numerosUnicos.length !== 5) {
+        return false;
+    }
+
+    // Ordenar
+    const ordenada = numerosUnicos.sort((a, b) => a - b);
+
+    // Verificar consecutividad normal (ej: [1,2,3,4,5] o [2,3,4,5,6])
+    const diferenciaNormal = ordenada[4] - ordenada[0];
+    const esEscaleraNormal = diferenciaNormal === 4 && 
+                           ordenada.every((num, i, arr) => i === 0 || num === arr[i-1] + 1);
+
+    // Verificar consecutividad circular (ej: [4,5,6,1,2] o [5,6,1,2,3])
+    const esEscaleraCircular = (ordenada[0] === 1 && ordenada[1] === 2 && ordenada[2] === 3 && 
+                               ordenada[3] === 4 && ordenada[4] === 6) || // [1,2,3,4,6]
+                              (ordenada[0] === 1 && ordenada[1] === 2 && ordenada[2] === 3 && 
+                               ordenada[3] === 5 && ordenada[4] === 6) || // [1,2,3,5,6]
+                              (ordenada[0] === 1 && ordenada[1] === 2 && ordenada[2] === 4 && 
+                               ordenada[3] === 5 && ordenada[4] === 6) || // [1,2,4,5,6]
+                              (ordenada[0] === 1 && ordenada[1] === 3 && ordenada[2] === 4 && 
+                               ordenada[3] === 5 && ordenada[4] === 6) || // [1,3,4,5,6]
+                              (ordenada[0] === 2 && ordenada[1] === 3 && ordenada[2] === 4 && 
+                               ordenada[3] === 5 && ordenada[4] === 6);   // [2,3,4,5,6]
+
+    if (esEscaleraNormal || esEscaleraCircular) {
+        // Verificar si algún botón de dados está deshabilitado
+        const botonesDados = ['d1', 'd2', 'd3', 'd4', 'd5'].map(id => document.getElementById(id));
+        const algunBotonBloqueado = botonesDados.some(boton => boton?.disabled);
+        
+        // Asignar puntuación según el estado de los botones
+        const puntuacion = algunBotonBloqueado ? 25 : 30;
+
+        // Actualizar el DOM
+        if (elementoDOM && 'innerText' in elementoDOM) {
+            elementoDOM.innerText = puntuacion;
+        } else {
+            console.warn("Elemento DOM no válido. No se actualizó el texto.");
+        }
+        return true;
+    }
+    
+    return false;
+}
