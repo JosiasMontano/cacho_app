@@ -197,3 +197,32 @@ function escalera(mano, elementoDOM) {
     
     return false;
 }
+
+
+function pokers(mano, elementoDOM) {
+    // Contar frecuencia de cada número
+    const frecuencia = {};
+    mano.forEach(num => {
+        frecuencia[num] = (frecuencia[num] || 0) + 1;
+    });
+
+    // Verificar si hay un número con frecuencia 4 y otro con frecuencia 1
+    const frecuencias = Object.values(frecuencia);
+    const cumpleCondicion = (
+        frecuencias.includes(4) && 
+        frecuencias.includes(1)
+    );
+
+    // Actualizar el DOM si cumple
+    if (cumpleCondicion) {
+        if (elementoDOM && 'innerText' in elementoDOM) {
+            elementoDOM.innerText = "40"; // Cambia el texto a 40
+        } else {
+            console.warn("Elemento DOM no válido. No se actualizó el texto.");
+        }
+    }
+
+    return cumpleCondicion;
+}
+
+
