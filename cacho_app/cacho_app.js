@@ -225,4 +225,35 @@ function pokers(mano, elementoDOM) {
     return cumpleCondicion;
 }
 
+function grandes1(mano, elementoDOM) {
+const primerNumero = mano[0];
+    const sonTodosIguales = mano.every(num => num === primerNumero);
+
+    // Actualizar el DOM si cumple
+    if (sonTodosIguales) {
+        if (elementoDOM && 'innerText' in elementoDOM) {
+            elementoDOM.innerText = "50"; // Cambia el texto a 50 si todos son iguales
+        } else {
+            console.warn("Elemento DOM no válido. No se actualizó el texto.");
+        }
+    }
+
+    return sonTodosIguales;
+}
+
+function grandes2(mano, elementoDOM) {
+const primerNumero = mano[0];
+    const sonTodosIguales = mano.every(num => num === primerNumero);
+
+    // Actualizar el DOM si cumple
+    if (sonTodosIguales) {
+        if (elementoDOM && 'innerText' in elementoDOM) {
+            elementoDOM.innerText = "50"; // Cambia el texto a 50 si todos son iguales
+        } else {
+            console.warn("Elemento DOM no válido. No se actualizó el texto.");
+        }
+    }
+
+    return sonTodosIguales;
+}
 
