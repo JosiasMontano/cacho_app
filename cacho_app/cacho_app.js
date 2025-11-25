@@ -84,6 +84,12 @@ function calcularPuntaje(){
     puntajePlayer.innerText=puntaje;
 }
 
+function endgame(){
+if (balasPlayer.disabled && tontosPlayer.disabled && trenesPlayer.disabled && cuadrasPlayer.disabled && quinasPlayer.disabled && cenasPlayer.disabled && escaleraPlayer.disabled && pokerPlayer.disabled && fullPlayer.disabled && grande1Player.disabled && grande2Player.disabled) {
+ alert("¡Felicidades! Puntuación: " + puntajePlayer.innerText);
+}
+}
+
 lanzar.addEventListener("click",lanzarDados);
 
 balasPlayer.addEventListener("click",anotarBalas);
@@ -129,7 +135,8 @@ function anotarBalas(){
         balasPlayer.innerText=i+" Bala: "+suma;
         }
         calcularPuntaje();
-
+        balasPlayer.disabled=true;
+        endgame();
 }
 
 function anotarTontos(){
@@ -162,6 +169,8 @@ function anotarTontos(){
         tontosPlayer.innerText=i+" Tonto: "+suma;
         }
         calcularPuntaje();
+        tontosPlayer.disabled=true;
+        endgame();
 }
 
 function anotarTrenes(){
@@ -194,6 +203,8 @@ function anotarTrenes(){
         trenesPlayer.innerText=i+" Tren: "+suma;
         }
         calcularPuntaje();
+        trenesPlayer.disabled=true;
+        endgame();
 }
 
 function anotarCuadras(){
@@ -226,6 +237,8 @@ function anotarCuadras(){
         cuadrasPlayer.innerText=i+" Cuadra: "+suma;
         }
         calcularPuntaje();
+        cuadrasPlayer.disabled=true;
+        endgame();
 }
 
 function anotarQuinas(){
@@ -258,6 +271,8 @@ function anotarQuinas(){
         quinasPlayer.innerText=i+" Quina: "+suma;
         }
         calcularPuntaje();
+        quinasPlayer.disabled=true;
+        endgame();
 }
 
 function anotarCenas(){
@@ -290,6 +305,8 @@ function anotarCenas(){
           cenasPlayer.innerText=i+" Cena: "+suma;
         } 
         calcularPuntaje();
+        cenasPlayer.disabled=true;
+        endgame();
 }
 
 function anotarEscalera(){
@@ -306,6 +323,8 @@ function anotarEscalera(){
         escaleraPlayer.innerText="Escalera: 0"; 
     }
     calcularPuntaje();
+    escaleraPlayer.disabled=true;
+    endgame();
 }
 
 function anotarPoker(){
@@ -323,6 +342,8 @@ function anotarPoker(){
         pokerPlayer.innerText="Poker: 0";
     }
     calcularPuntaje(); 
+    pokerPlayer.disabled=true;
+    endgame();
 }
 function anotarFull(){
     const uno=Number(dado1.innerText);
@@ -339,6 +360,8 @@ function anotarFull(){
         fullPlayer.innerText="Full: 0";
     }
     calcularPuntaje();
+    fullPlayer.disabled=true;
+    endgame();
 }
 
 function anotarGrande1(){
@@ -355,6 +378,8 @@ function anotarGrande1(){
         grande1Player.innerText="Grande: 0"; 
     }
     calcularPuntaje();
+    grande1Player.disabled=true;
+    endgame();
 }
 
 function anotarGrande2(){
@@ -371,4 +396,7 @@ function anotarGrande2(){
         grande2Player.innerText="Grande: 0"; 
     }
     calcularPuntaje();
+    grande2Player.disabled=true;
+    endgame();
+        
 }
